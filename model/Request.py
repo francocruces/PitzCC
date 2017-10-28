@@ -51,7 +51,7 @@ class RequireTagConstraint(Constraint):
         self.tag = tag
 
     def eval(self, item):
-        return item.has_tag(item)
+        return item.has_tag(self.tag)
 
 
 class RejectTagConstraint(Constraint):
@@ -63,4 +63,4 @@ class RejectTagConstraint(Constraint):
         self.tag = tag
 
     def eval(self, item):
-        return not item.has_tag(item)
+        return not item.has_tag(self.tag)

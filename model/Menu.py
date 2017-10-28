@@ -11,16 +11,13 @@ class MenuElement:
         self.name = name
 
     def is_food(self):
-        return self.__class__ == Food
+        return False
 
     def is_drink(self):
-        return self.__class__ == Drink
+        return False
 
     def is_pizza(self):
-        return self.__class__ == Pizza
-
-    def is_ingredient(self):
-        return self.__class__ == Ingredient
+        return False
 
     @abc.abstractmethod
     def has_tag(self, tag):
@@ -38,6 +35,9 @@ class Food(MenuElement):
     @abc.abstractmethod
     def has_tag(self, tag):
         return False
+
+    def is_food(self):
+        return True
 
 
 class Pizza(Food):
@@ -58,12 +58,16 @@ class Pizza(Food):
         :return self for chaining
         """
         self.ingredients.append(ingredient)
+        return self
 
     def has_tag(self, tag):
         for i in self.ingredients:
             if i.has_tag(tag):
                 return True
         return False
+
+    def is_pizza(self):
+        return True
 
 
 class Ingredient:
@@ -76,7 +80,7 @@ class Ingredient:
         self.tags = []
 
     def has_tag(self, tag):
-        self.tags.__contains__(tag)
+        return self.tags.__contains__(tag)
 
     def add_tag(self, tag):
         """
@@ -86,7 +90,7 @@ class Ingredient:
         """
         self.tags.append(tag)
         return self
-
+    
 
 class Drink(MenuElement):
     """
@@ -99,6 +103,9 @@ class Drink(MenuElement):
 
     def has_tag(self, tag):
         return False
+
+    def is_drink(self):
+        return True
 
 
 class PricedElement:

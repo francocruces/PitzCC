@@ -43,6 +43,9 @@ class Constraint:
 
 
 class RequireTagConstraint(Constraint):
+    """
+    Constraint that requires a tag to be present.
+    """
     def __init__(self, tag):
         super(RequireTagConstraint, self).__init__()
         self.tag = tag
@@ -52,6 +55,9 @@ class RequireTagConstraint(Constraint):
 
 
 class RejectTagConstraint(Constraint):
+    """
+    Constraint that requires a tag not to be present.
+    """
     def __init__(self, tag):
         super(RejectTagConstraint, self).__init__()
         self.tag = tag

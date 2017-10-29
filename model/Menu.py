@@ -27,30 +27,8 @@ class MenuElement(metaclass=abc.ABCMeta):
         pass
 
 
-class Food(MenuElement):
-    """
-    Food. Menu element.
-    """
-
-    def __init__(self, name):
-        super(Food, self).__init__(name)
-
-    @abc.abstractmethod
-    def has_tag(self, tag):
-        pass
-
-    def is_food(self):
-        return True
-
-
-class Pizza(Food):
-    """
-    A pizza. It's a Food MenuElement. Has ingredients and a size.
-    """
-
-    def __init__(self, name, size):
-        super(Pizza, self).__init__(name)
-        self.size = size
+class ElementWithIngredients:
+    def __init__(self):
         self.ingredients = []
 
     def add_ingredient(self, ingredient):
@@ -69,9 +47,6 @@ class Pizza(Food):
                 return True
         return False
 
-    def is_pizza(self):
-        return True
-
     def has_ingredient_name(self, ing_name):
         for i in self.ingredients:
             if i.get_name() == ing_name:
@@ -80,6 +55,44 @@ class Pizza(Food):
 
     def get_ingredients(self):
         return self.ingredients
+
+
+class SizedElement:
+    def __init__(self, size):
+        self.size = size
+
+    def get_size(self):
+        return self.size
+
+
+class Food(MenuElement):
+    """
+    Food. Menu element.
+    """
+
+    def __init__(self, name):
+        super(Food, self).__init__(name)
+
+    @abc.abstractmethod
+    def has_tag(self, tag):
+        pass
+
+    def is_food(self):
+        return True
+
+
+class Pizza(ElementWithIngredients, Food, SizedElement):
+    """
+    A pizza. It's a Food MenuElement and an ElementWithIngredients. Has ingredients and a size.
+    """
+
+    def __init__(self, name, size):
+        Food.__init__(self, name)
+        ElementWithIngredients.__init__(self)
+        SizedElement.__init__(self, size)
+
+    def is_pizza(self):
+        return True
 
 
 class Ingredient:
@@ -129,7 +142,7 @@ class Drink(MenuElement):
         return True
 
 
-class PricedElement:
+class PricedSet:
     """
     A set of MenuElements with an associated price.
     """

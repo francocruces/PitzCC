@@ -1,6 +1,6 @@
 import unittest
 
-from model.Menu import Pizza, PricedElement, Ingredient
+from model.Menu import Pizza, PricedSet, Ingredient
 from model.Request import RequireTagConstraint, RejectTagConstraint, Request
 
 
@@ -30,7 +30,7 @@ class TestTags(unittest.TestCase):
         self.request1 = Request().add_constraint(self.require_meat)
         self.request2 = Request().add_constraint(self.require_meat).add_constraint(self.reject_lactose)
 
-        self.priced = PricedElement([self.pizza], self.pizza_price)
+        self.priced = PricedSet([self.pizza], self.pizza_price)
 
     def test_ingredient_instance(self):
         self.assertEqual(self.cheese.get_name(), "Cheese")

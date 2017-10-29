@@ -24,6 +24,12 @@ class Request:
         self.constraints.append(cons)
         return self
 
+    def eval_item(self, item):
+        for c in self.constraints:
+            if not c.eval(item):
+                return False
+        return True
+
 
 class Constraint:
     """
@@ -39,7 +45,7 @@ class Constraint:
         :type item: MenuElement
         :return: True if accepts, False otherwise
         """
-        return True
+        pass
 
 
 class RequireTagConstraint(Constraint):

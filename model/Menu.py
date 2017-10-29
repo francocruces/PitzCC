@@ -1,7 +1,7 @@
 import abc
 
 
-class MenuElement:
+class MenuElement(metaclass=abc.ABCMeta):
     """
     A menu element, represents anything the store offers.
     Has is_xxxx() methods for testing.
@@ -9,6 +9,9 @@ class MenuElement:
 
     def __init__(self, name):
         self.name = name
+
+    def get_name(self):
+        return self.name
 
     def is_food(self):
         return False
@@ -21,7 +24,7 @@ class MenuElement:
 
     @abc.abstractmethod
     def has_tag(self, tag):
-        return False
+        pass
 
 
 class Food(MenuElement):
@@ -34,7 +37,7 @@ class Food(MenuElement):
 
     @abc.abstractmethod
     def has_tag(self, tag):
-        return False
+        pass
 
     def is_food(self):
         return True
@@ -69,6 +72,15 @@ class Pizza(Food):
     def is_pizza(self):
         return True
 
+    def has_ingredient_name(self, ing_name):
+        for i in self.ingredients:
+            if i.get_name() == ing_name:
+                return True
+        return False
+
+    def get_ingredients(self):
+        return self.ingredients
+
 
 class Ingredient:
     """
@@ -90,7 +102,13 @@ class Ingredient:
         """
         self.tags.append(tag)
         return self
-    
+
+    def get_name(self):
+        return self.name
+
+    def get_tags(self):
+        return self.tags
+
 
 class Drink(MenuElement):
     """
@@ -100,6 +118,9 @@ class Drink(MenuElement):
     def __init__(self, name, size):
         super(Drink, self).__init__(name)
         self.size = size
+
+    def get_size(self):
+        return self.size
 
     def has_tag(self, tag):
         return False
@@ -122,3 +143,21 @@ class PricedElement:
         """
         self.items = menu_elements
         self.price = price
+
+    def get_items(self):
+        return self.items
+
+    def get_price(self):
+        return self.price
+
+    def has_tag(self, tag):
+        for e in self.items:
+            if e.has_tag(tag):
+                return True
+        return False
+
+    def has_ingredient_name(self, ing_name):
+        for e in self.items:
+            if e.has_ingredient_name(ing_name):
+                return True
+        return False

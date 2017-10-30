@@ -7,4 +7,4 @@ LARGE_PIZZA = 3  # Or family size
 LACTOSE = "Lactose"
 MEAT = "Meat"
 SPICY = "Spicy"
-PURE_EVIL = "Pure evil"
+PURE_LOVE = "Pure love"

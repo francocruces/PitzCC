@@ -1,4 +1,5 @@
 import abc
+from model.Size import Size
 
 
 class MenuElement(metaclass=abc.ABCMeta):
@@ -59,6 +60,11 @@ class ElementWithIngredients:
 
 class SizedElement:
     def __init__(self, size):
+        """
+        Constructor.
+        :param size: Size object for this element
+        :type size: Size
+        """
         self.size = size
 
     def get_size(self):
@@ -123,14 +129,14 @@ class Ingredient:
         return self.tags
 
 
-class Drink(MenuElement):
+class Drink(MenuElement, SizedElement):
     """
     Drink. Menu element.
     """
 
     def __init__(self, name, size):
-        super(Drink, self).__init__(name)
-        self.size = size
+        MenuElement.__init__(self, name)
+        SizedElement.__init__(self, size)
 
     def get_size(self):
         return self.size

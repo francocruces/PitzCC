@@ -25,7 +25,7 @@ class DiameterSize(Size):
 
     def get_real_size(self):
         # Returns volume of a disc with a width of 1 cm
-        return math.pi * self.nominal_size  # In cm^3
+        return math.pi * math.pow(self.nominal_size / 2.0, 2.0)  # In cm^3
 
 
 class LiquidSize(Size):

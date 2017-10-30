@@ -1,4 +1,5 @@
 import abc
+
 from model.Size import Size
 
 
@@ -68,7 +69,10 @@ class SizedElement:
         self.size = size
 
     def get_size(self):
-        return self.size
+        return self.size.get_nominal_size()
+
+    def get_satiety_index(self):
+        return self.size.get_real_size()
 
 
 class Food(MenuElement):

@@ -1,7 +1,9 @@
+import math
 import unittest
 
 from model.Menu import Pizza, PricedSet, Ingredient
 from model.Request import RequireTagConstraint, RejectTagConstraint, Request
+from model.Size import DiameterSize
 
 
 class TestTags(unittest.TestCase):
@@ -13,7 +15,7 @@ class TestTags(unittest.TestCase):
         self.meat_tag = "Meat"
         self.spicy_tag = "Spicy"
         self.napolitan_name = "Napolitan"
-        self.pizza_size = 3
+        self.pizza_size = DiameterSize(20)
         self.pizza_price = 4000
 
         self.cheese = Ingredient(self.cheese_name).add_tag(self.lactose_tag)
@@ -46,6 +48,8 @@ class TestTags(unittest.TestCase):
         self.assertTrue(self.pizza.is_food())
         self.assertTrue(self.pizza.is_pizza())
         self.assertFalse(self.pizza.is_drink())
+        self.assertEqual(self.pizza.get_size(), 20)
+        self.assertEqual(self.pizza.get_satiety_index(), 100 * math.pi)
 
         self.assertEqual(self.pizza.get_ingredients(), [self.cheese, self.tomato, self.ham])
         self.assertTrue(self.pizza.has_ingredient_name("Cheese"))

@@ -78,6 +78,9 @@ class SizedElement:
     def get_satiety_index(self):
         return self.size.get_real_size()
 
+    def get_size_object(self):
+        return self.size
+
 
 class Food(MenuElement):
     """
@@ -145,9 +148,6 @@ class Drink(MenuElement, SizedElement):
     def __init__(self, name, size, price):
         MenuElement.__init__(self, name, price)
         SizedElement.__init__(self, size)
-
-    def get_size(self):
-        return self.size
 
     def has_tag(self, tag):
         return False

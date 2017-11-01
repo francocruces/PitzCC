@@ -18,6 +18,15 @@ class Size(metaclass=abc.ABCMeta):
         # TODO: Declare satiety index standard
         pass
 
+    def equal(self, size):
+        """
+        Compares two Size objects
+        :param size:
+        :type size: Size
+        :return: True if are of the same type and have same nominal size
+        """
+        return type(self) is type(size) and self.nominal_size == size.nominal_size
+
 
 class DiameterSize(Size):
     def __init__(self, n):

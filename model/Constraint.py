@@ -1,4 +1,5 @@
 import abc
+
 from model.Menu import MenuElement, SizedElement
 from model.Size import Size
 
@@ -7,6 +8,7 @@ class Constraint(metaclass=abc.ABCMeta):
     """
     An abstract Constraint. Implements common functionality for constraints
     """
+
     @abc.abstractmethod
     def accept(self, item):
         """

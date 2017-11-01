@@ -1,9 +1,3 @@
-import abc
-from abc import ABCMeta
-
-from model.Menu import MenuElement
-
-
 class Request:
     """
     A request emitted by a user. Supports tag constraints.
@@ -12,7 +6,7 @@ class Request:
     def __init__(self):
         self.constraints = []
 
-    # TODO: Implement generic requests
+    # TODO: Implement food amount requests
 
     def add_constraint(self, cons):
         """

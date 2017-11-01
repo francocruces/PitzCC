@@ -1,5 +1,5 @@
-from model.Menu import Ingredient
 import model.Constants
+from model.Menu import Ingredient
 
 # Available ingredients seem difficult to parse and use. Some examples are provided here.
 QUESO = Ingredient("Queso").add_tag(model.Constants.LACTOSE)

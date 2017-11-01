@@ -1,13 +1,13 @@
 import math
 import unittest
 
+from model.Constraint import IsDrinkConstraint, IsFoodConstraint, IsPizzaConstraint, SizeConstraint
+from model.Constraint import RequireTagConstraint, RejectTagConstraint
 from model.Menu import Pizza, Ingredient, Drink
 from model.PricedSet import PricedSet
-from model.Constraint import RequireTagConstraint, RejectTagConstraint
 from model.Request import Request
-from model.SpecialOffer import SpecialOffer, OfferPlaceholder
 from model.Size import DiameterSize, LiquidSize
-from model.Constraint import IsDrinkConstraint, IsFoodConstraint, IsPizzaConstraint, SizeConstraint
+from model.SpecialOffer import SpecialOffer, OfferPlaceholder
 
 
 class TestTags(unittest.TestCase):
@@ -187,6 +187,7 @@ class TestTags(unittest.TestCase):
 
         self.assertFalse(cc10d.accept(p))
         self.assertFalse(cm100p.accept(d))
+
 
 if __name__ == '__main__':
     unittest.main()

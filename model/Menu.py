@@ -154,4 +154,3 @@ class Drink(MenuElement, SizedElement):
 
     def is_drink(self):
         return True
-

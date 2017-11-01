@@ -9,8 +9,12 @@ class MenuElement(metaclass=abc.ABCMeta):
     Has is_xxxx() methods for testing.
     """
 
-    def __init__(self, name):
+    def __init__(self, name, price):
         self.name = name
+        self.price = price
+
+    def get_price(self):
+        return self.price
 
     def get_name(self):
         return self.name
@@ -80,8 +84,8 @@ class Food(MenuElement):
     Food. Menu element.
     """
 
-    def __init__(self, name):
-        super(Food, self).__init__(name)
+    def __init__(self, name, price):
+        super(Food, self).__init__(name, price)
 
     @abc.abstractmethod
     def has_tag(self, tag):
@@ -96,8 +100,8 @@ class Pizza(ElementWithIngredients, Food, SizedElement):
     A pizza. It's a Food MenuElement and an ElementWithIngredients. Has ingredients and a size.
     """
 
-    def __init__(self, name, size):
-        Food.__init__(self, name)
+    def __init__(self, name, size, price):
+        Food.__init__(self, name, price)
         ElementWithIngredients.__init__(self)
         SizedElement.__init__(self, size)
 
@@ -138,8 +142,8 @@ class Drink(MenuElement, SizedElement):
     Drink. Menu element.
     """
 
-    def __init__(self, name, size):
-        MenuElement.__init__(self, name)
+    def __init__(self, name, size, price):
+        MenuElement.__init__(self, name, price)
         SizedElement.__init__(self, size)
 
     def get_size(self):
@@ -151,36 +155,3 @@ class Drink(MenuElement, SizedElement):
     def is_drink(self):
         return True
 
-
-class PricedSet:
-    """
-    A set of MenuElements with an associated price.
-    """
-
-    def __init__(self, menu_elements, price):
-        """
-        Constructor.
-        :param menu_elements: Array of MenuElement
-        :param price: Price for given set of elements
-        :type price: int
-        """
-        self.items = menu_elements
-        self.price = price
-
-    def get_items(self):
-        return self.items
-
-    def get_price(self):
-        return self.price
-
-    def has_tag(self, tag):
-        for e in self.items:
-            if e.has_tag(tag):
-                return True
-        return False
-
-    def has_ingredient_name(self, ing_name):
-        for e in self.items:
-            if e.has_ingredient_name(ing_name):
-                return True
-        return False

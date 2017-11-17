@@ -1,5 +1,6 @@
-import requests  # html
 import re  # regex
+
+import requests  # html
 from bs4 import BeautifulSoup  # sopita
 
 

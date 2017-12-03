@@ -28,6 +28,9 @@ class MenuElement(metaclass=abc.ABCMeta):
     def is_pizza(self):
         return False
 
+    def accept_visitor(self, visitor):
+        visitor.visit_menu_element(self)
+
     @abc.abstractmethod
     def has_tag(self, tag):
         pass

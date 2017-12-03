@@ -1,3 +1,6 @@
+from .menuVisitor.MenuVisitor import *
+
+
 class PricedSet:
     """
     A set of MenuElements with an associated price.
@@ -33,7 +36,23 @@ class PricedSet:
         return False
 
     def calc_applied_discount(self):
+        """
+        Calculates the difference between the price of the set
+        and the sum of the prices of the individual elements
+        :return: the difference between the price of the set
+        and the sum of the prices of the individual elements
+        """
         regular_price = 0
         for e in self.items:
             regular_price += e.get_price()
         return regular_price - self.price
+
+    def accept_visitor(self, visitor: MenuVisitor) -> None:
+        """
+        Accepts the visitor and redirects it to the children
+        :param visitor: the visitor
+        """
+        for item in self.get_items():
+            item.accept_visitor(visitor)
+
+        visitor.visit_priced_set(self)
